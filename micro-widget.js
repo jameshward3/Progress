@@ -4,7 +4,7 @@
   const script = document.currentScript;
   const targetSelector = script?.dataset.target || "#first-100-days-micro-widget";
   const mount = document.querySelector(targetSelector) || document.createElement("div");
-  const dashboardUrl = script?.dataset.dashboardUrl || "./widget.html";
+  const dashboardUrl = script?.dataset.dashboardUrl || "https://jameswardfororange.com/first-100-days";
 
   if (!mount.parentNode && script?.parentNode) {
     script.parentNode.insertBefore(mount, script);
