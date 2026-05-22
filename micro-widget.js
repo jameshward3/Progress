@@ -58,23 +58,30 @@
           box-shadow:0 10px 26px rgba(6,27,58,.10);
           color:#071831;
           font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          container-type:inline-size;
           overflow:hidden;
           width:100%;
         }
 
         .jw-micro-grid {
           display:grid;
-          grid-template-columns:repeat(3,minmax(0,1fr));
+          grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
         }
 
         .jw-micro-card {
           border-right:1px solid #e2e6ed;
+          border-bottom:1px solid #e2e6ed;
           color:#071831;
-          min-height:124px;
-          padding:14px;
+          display:grid;
+          gap:6px;
+          grid-template-rows:auto auto auto minmax(24px,1fr);
+          min-height:112px;
+          min-width:0;
+          padding:12px;
           text-decoration:none;
         }
 
+        .jw-micro-card:nth-child(3n),
         .jw-micro-card:last-child {
           border-right:0;
         }
@@ -82,33 +89,37 @@
         .jw-micro-label {
           color:#34445c;
           display:block;
-          font-size:11px;
+          font-size:10px;
           font-weight:850;
           line-height:1.15;
-          min-height:28px;
+          min-height:0;
+          overflow-wrap:anywhere;
         }
 
         .jw-micro-value {
           display:block;
-          font-size:30px;
+          font-size:clamp(22px, 11cqw, 30px);
           font-weight:900;
           letter-spacing:0;
           line-height:1;
-          margin-top:10px;
+          min-width:0;
+          overflow-wrap:anywhere;
         }
 
         .jw-micro-note {
           color:#607086;
           display:block;
-          font-size:10px;
+          font-size:9px;
           font-weight:700;
-          margin-top:5px;
+          line-height:1.25;
+          overflow-wrap:anywhere;
         }
 
         .jw-micro-visual {
+          align-self:end;
           display:block;
-          height:38px;
-          margin-top:8px;
+          height:30px;
+          min-width:0;
           width:100%;
         }
 
@@ -116,17 +127,18 @@
           background:conic-gradient(#1957c2 var(--progress), #e3e8f0 0);
           border-radius:50%;
           display:block;
-          height:38px;
+          height:30px;
           margin-left:auto;
+          max-width:100%;
           position:relative;
-          width:38px;
+          width:30px;
         }
 
         .jw-mini-donut::after {
           background:#fff;
           border-radius:50%;
           content:"";
-          inset:10px;
+          inset:8px;
           position:absolute;
         }
 
@@ -149,11 +161,11 @@
           border-top:1px solid #e2e6ed;
           color:#1957c2;
           display:flex;
-          font-size:12px;
+          font-size:11px;
           font-weight:850;
           gap:8px;
-          min-height:42px;
-          padding:0 14px;
+          min-height:34px;
+          padding:0 12px;
           text-decoration:none;
         }
 
@@ -170,6 +182,39 @@
           .jw-micro-card {
             border-bottom:1px solid #e2e6ed;
             border-right:0;
+            min-height:96px;
+          }
+        }
+
+        @media (max-height:220px) {
+          .jw-micro-card {
+            min-height:92px;
+            padding:10px;
+          }
+
+          .jw-micro-label {
+            font-size:9px;
+          }
+
+          .jw-micro-value {
+            font-size:24px;
+          }
+
+          .jw-micro-visual {
+            height:24px;
+          }
+
+          .jw-mini-donut {
+            height:24px;
+            width:24px;
+          }
+
+          .jw-mini-donut::after {
+            inset:6px;
+          }
+
+          .jw-micro-footer {
+            min-height:30px;
           }
         }
       </style>
