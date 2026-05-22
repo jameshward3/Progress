@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First 100 Days Admin</title>
+    <style>
+      :root {
+        --navy: #061b3a;
+        --gold: #f4ad3d;
+        --ink: #071831;
+        --muted: #607086;
+        --line: #dce3ec;
+        --soft: #eef2f7;
+        --blue: #1957c2;
+        --danger: #a62620;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--soft);
+        color: var(--ink);
+        margin: 0;
+      }
+
+      header {
+        background: var(--navy);
+        color: white;
+        padding: 22px;
+      }
+
+      header div {
+        align-items: center;
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 1240px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+
+      header a {
+        color: var(--gold);
+        font-weight: 800;
+      }
+
+      main {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 360px 1fr;
+        margin: 0 auto;
+        max-width: 1240px;
+        padding: 22px;
+      }
+
+      section,
+      .card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      h2,
+      h3 {
+        margin: 0 0 14px;
+      }
+
+      label {
+        color: var(--navy);
+        display: grid;
+        font-size: 13px;
+        font-weight: 800;
+        gap: 6px;
+      }
+
+      input,
+      select,
+      textarea {
+        border: 1px solid #cfd8e3;
+        border-radius: 6px;
+        color: var(--ink);
+        font: inherit;
+        min-height: 40px;
+        padding: 9px 10px;
+        width: 100%;
+      }
+
+      textarea {
+        min-height: 78px;
+        resize: vertical;
+      }
+
+      button,
+      .button {
+        align-items: center;
+        background: var(--gold);
+        border: 0;
+        border-radius: 6px;
+        color: var(--ink);
+        cursor: pointer;
+        display: inline-flex;
+        font: inherit;
+        font-weight: 850;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 14px;
+        text-decoration: none;
+      }
+
+      button.secondary,
+      .button.secondary {
+        background: #e9eef6;
+      }
+
+      button.danger {
+        background: #ffe1df;
+        color: var(--danger);
+      }
+
+      .stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .notice {
+        background: #fff8e9;
+        border: 1px solid #f5d89d;
+        border-radius: 8px;
+        color: #69440e;
+        font-size: 13px;
+        line-height: 1.45;
+        padding: 12px;
+      }
+
+      .commitment-card {
+        background: #fbfcfe;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .commitment-head {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+      }
+
+      .commitment-title {
+        font-weight: 900;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .documents {
+        display: grid;
+        gap: 8px;
+      }
+
+      .document-row {
+        align-items: center;
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 1fr 1.4fr auto;
+        padding: 10px;
+      }
+
+      .document-row a {
+        color: var(--blue);
+        font-weight: 800;
+      }
+
+      .preview {
+        margin-top: 18px;
+      }
+
+      body.locked main,
+      body.locked header {
+        display: none;
+      }
+
+      .login-screen {
+        align-items: center;
+        background: var(--soft);
+        display: none;
+        min-height: 100vh;
+        padding: 22px;
+      }
+
+      body.locked .login-screen {
+        display: flex;
+      }
+
+      .login-card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 14px 35px rgba(6, 27, 58, 0.12);
+        display: grid;
+        gap: 14px;
+        margin: 0 auto;
+        max-width: 420px;
+        padding: 24px;
+        width: 100%;
+      }
+
+      .login-error {
+        color: var(--danger);
+        display: none;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      @media (max-width: 980px) {
+        main,
+        .form-grid,
+        .document-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="locked">
+    <div class="login-screen">
+      <form class="login-card" data-login-form>
+        <h1>Admin Access</h1>
+        <label>Password <input data-password type="password" autocomplete="current-password" autofocus></label>
+        <span class="login-error" data-login-error>Incorrect password.</span>
+        <button type="submit">Unlock admin</button>
+      </form>
+    </div>
+
+    <header>
+      <div>
+        <h1>First 100 Days Admin</h1>
+        <a href="./index.html">View public preview</a>
+      </div>
+    </header>
+
+    <main>
+      <aside class="stack">
+        <section class="stack">
+          <h2>Export</h2>
+          <div class="notice">
+            GitHub Pages cannot save changes directly. Edit here, then download the updated files and upload them to GitHub.
+          </div>
+          <div class="actions">
+            <button data-save-local type="button">Save draft</button>
+            <button data-download-data type="button">Download metrics-data.js</button>
+            <button data-download-json type="button">Download metrics.json</button>
+            <button class="secondary" data-reset type="button">Reset draft</button>
+          </div>
+        </section>
+
+        <section>
+          <h2>Summary</h2>
+          <form class="stack" data-summary-form></form>
+        </section>
+
+        <section>
+          <h2>Add Commitment</h2>
+          <form class="stack" data-add-form></form>
+        </section>
+      </aside>
+
+      <section>
+        <h2>Commitments</h2>
+        <div class="stack" data-commitments></div>
+        <div class="preview">
+          <h2>Preview</h2>
+          <div id="first-100-days-admin-preview"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./metrics-data.js"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>
